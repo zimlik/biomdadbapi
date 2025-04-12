@@ -1,9 +1,0 @@
-Metadata-Version: 2.1
-Name: biomdadbapi
-Version: 0.9.9
-Summary: The API for the BioMDA database
-Home-page: https://github.com/zimlik/biomdadbapi
-Author: Zhan Li
-Author-email: smu18575877413@gmail.com
-License: MIT
-License-File: LICENSE

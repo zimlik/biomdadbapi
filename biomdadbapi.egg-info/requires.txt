@@ -1,7 +1,0 @@
-configparser
-fastapi>=0.115.11
-modules>=1.0.0
-pydantic<2.11.0,>=2.10.6
-python-multipart>=0.0.20
-sqlmodel>=0.0.23
-uvicorn>=0.34.0
