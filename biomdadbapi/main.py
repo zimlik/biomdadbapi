@@ -140,4 +140,4 @@ def main():
     host = conf_opt.get('host')
     port = conf_opt.get('port')
     port = int(port)
-    uvicorn.run(app='biomdadb.main:app', host=host, port=port)
+    uvicorn.run(app='biomdadbapi.main:app', host=host, port=port)
