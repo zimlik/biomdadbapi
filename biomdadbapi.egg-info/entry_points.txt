@@ -1,0 +1,4 @@
+[console_scripts]
+biomdadb-add-config = biomdadbapi.config:add_config
+biomdadb-api = biomdadbapi.main:main
+biomdadb-show-config = biomdadbapi.config:show_config
