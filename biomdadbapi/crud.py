@@ -24,15 +24,23 @@ async def sel_cid2info(cid: list[str]):
     with Session(engine) as session:
         stmt = select(Cnode).where(Cnode.id.in_(cid))
         cnodes = session.exec(stmt).all()
-    cnodes = row_to_dict(Cnode, cnodes)
-    return {'cnodes': cnodes}
+    if (len(cnodes) == 0):
+        res = None
+    else:
+        cnodes = row_to_dict(Cnode, cnodes)
+        res = {'cnodes': cnodes}
+    return res
 
 async def sel_stringid2info(stringid: list[str]):
     with Session(engine) as session:
         stmt = select(Pnode).where(Pnode.id.in_(stringid))
         pnodes = session.exec(stmt).all()
-    pnodes = row_to_dict(Pnode, pnodes)
-    return {'pnodes': pnodes}
+    if (len(pnodes) == 0):
+        res = None
+    else:
+        pnodes = row_to_dict(Pnode, pnodes)
+        res = {'pnodes': pnodes}
+    return res
 
 async def sel_cid2ssimcid(cid: list[str]):
     with Session(engine) as session:
