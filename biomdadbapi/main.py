@@ -5,6 +5,8 @@ import uvicorn
 from fastapi import FastAPI, HTTPException, Form
 from . import crud
 from .config import get_config
+from fastapi.responses import FileResponse
+import os
 
 description = """
 ## Description
@@ -48,12 +50,18 @@ app = FastAPI(
 )
 
 @app.get("/")
-def read_root():
+async def biomda_home():
     return {'Title': 'biomdadbapi',
             'Author': 'Li Zhan',
             'Email': 'smu18575877413@gmail.com',
             'Description': 'Building APIs for BioMDA Database via FastAPI framwork.',
             'URL': 'https://github.com/zimlik/biomdadbapi'}
+
+@app.get('/biomda-enrichment-terms.rds')
+async def biomda_enrichment_terms():
+    dir = os.path.dirname(os.path.abspath(__file__))
+    file = os.path.join(dir, 'biomda-enrichment-terms.rds')
+    return FileResponse(file)
 
 @app.post('/c2cid/')
 async def biomdadb_compound2cid(md5sum: list[str]=Form()):

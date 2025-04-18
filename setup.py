@@ -29,7 +29,7 @@ setup(
         'configparser',
     ],
     exclude_package_data={'':['.gitignore',]},
-    package_data={'': ['*.cfg']},
+    package_data={'': ['*.cfg', '*.rds']},
     entry_points={
         'console_scripts': ['biomdadb-api=biomdadbapi.main:main',
                             'biomdadb-add-config=biomdadbapi.config:add_config',
