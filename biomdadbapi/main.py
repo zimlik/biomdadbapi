@@ -5,40 +5,12 @@ import uvicorn
 from fastapi import FastAPI, HTTPException, Form
 from . import crud
 from .config import get_config
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 import os
-
-description = """
-## Description
-
-Building APIs for BioMDA Database via FastAPI framwork.
-
-## Author
-
--   [Li Zhan](https://orcid.org/0009-0003-7470-7586) Creator & Maintainer
--   [Prof. Guangchuang Yu](https://orcid.org/0000-0002-6485-8781) Contributor
-
-**YuLab** <https://yulab-smu.top/>
-
-**Department of Bioinformatics, School of Basic Medical Sciences, Southern Medical University.**
-
--   [Dr. Huimin Zheng](https://orcid.org/0000-0003-3489-0964) Contributor
-
-**Central Laboratory of the Medical Research Center, The First Affiliated Hospital of Ningbo University.**
-
-## Contributing
-
-We welcome any contributions! By participating in this project you agree
-to abide by the terms outlined in the [Contributor Code of
-Conduct](https://github.com/zimlik/biomdadbapi/blob/main/CONDUCT.md).
-
-## Feedback
-"""
 
 app = FastAPI(
     title='biomdadbapi',
     summary='Building APIs for BioMDA Database via FastAPI framwork.',
-    description=description,
     version='0.9.9',
     contact={
             'author': 'Li Zhan',
@@ -49,13 +21,12 @@ app = FastAPI(
                   'url': 'https://github.com/zimlik/biomdadbapi/blob/main/LICENSE'}
 )
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def biomda_home():
-    return {'Title': 'biomdadbapi',
-            'Author': 'Li Zhan',
-            'Email': 'smu18575877413@gmail.com',
-            'Description': 'Building APIs for BioMDA Database via FastAPI framwork.',
-            'URL': 'https://github.com/zimlik/biomdadbapi'}
+    dir = os.path.dirname(os.path.abspath(__file__))
+    file = os.path.join(dir, 'index.html')
+    html = open(file, 'r').read()
+    return html
 
 @app.get('/biomda-enrichment-terms.rds')
 async def biomda_enrichment_terms():

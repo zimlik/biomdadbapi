@@ -7,9 +7,8 @@ To run: python3 setup.py install
 
 """
 
-
 from setuptools import setup
- 
+
 setup(
     name='biomdadbapi',
     version='0.9.9',
@@ -29,7 +28,7 @@ setup(
         'configparser',
     ],
     exclude_package_data={'':['.gitignore',]},
-    package_data={'': ['*.cfg', '*.rds']},
+    package_data={'': ['*.cfg', '*.rds', '*.html']},
     entry_points={
         'console_scripts': ['biomdadb-api=biomdadbapi.main:main',
                             'biomdadb-add-config=biomdadbapi.config:add_config',
